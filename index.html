@@ -6,7 +6,6 @@
 <title>Cosmic Destiny</title>
 
 <style>
-/* ---------------- GLOBAL STYLE ---------------- */
 * {
   margin: 0;
   padding: 0;
@@ -15,30 +14,28 @@
 }
 
 body {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
   color: #f5f5f5;
   background: radial-gradient(circle at 30% 30%, #2b1d4d, #0b0f2b 60%);
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 3s ease forwards;
+  animation: fadeIn 2.5s ease forwards;
   border: 3px solid rgba(255,255,255,0.15);
+  padding: 40px 15px;
 }
 
-/* Fade in */
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
-/* ---------------- STAR FIELD ---------------- */
-.stars, .twinkling {
-  position: absolute;
+/* Background layers */
+.stars, .nebula {
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+  z-index: -1;
 }
 
 .stars {
@@ -46,67 +43,59 @@ body {
   animation: moveStars 120s linear infinite;
   opacity: 0.6;
 }
+@keyframes moveStars { from {background-position: 0 0;} to {background-position: 10000px 5000px;} }
 
-@keyframes moveStars {
-  from {background-position: 0 0;}
-  to {background-position: 10000px 5000px;}
-}
-
-/* ---------------- NEBULA GLOW ---------------- */
 .nebula {
-  position: absolute;
   width: 200%;
   height: 200%;
   background: radial-gradient(circle, rgba(255,182,193,0.08), rgba(138,43,226,0.1), transparent 60%);
   animation: nebulaMove 60s linear infinite;
 }
-
 @keyframes nebulaMove {
   0% {transform: translate(-10%, -10%);}
   50% {transform: translate(-5%, -15%);}
   100% {transform: translate(-10%, -10%);}
 }
 
-/* ---------------- HEARTS ---------------- */
+/* Hearts */
 .heart {
-  position: absolute;
+  position: fixed;
   bottom: -50px;
   color: rgba(255,182,193,0.6);
   animation: floatUp linear forwards;
+  z-index: -1;
 }
-
 @keyframes floatUp {
-  to {
-    transform: translateY(-110vh);
-    opacity: 0;
-  }
+  to { transform: translateY(-110vh); opacity: 0; }
 }
 
-/* ---------------- CENTER AURA ---------------- */
+/* Message container */
 .center-box {
-  position: relative;
   max-width: 700px;
-  padding: 40px;
-  border-radius: 50%;
+  width: 100%;
+  padding: 35px;
+  border-radius: 25px;
   text-align: center;
-  background: radial-gradient(circle, rgba(255,192,203,0.12), rgba(255,255,255,0.05));
-  box-shadow: 0 0 60px rgba(255,192,203,0.25);
+  background: rgba(20, 15, 45, 0.65);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 50px rgba(255,192,203,0.25);
   animation: pulseGlow 6s infinite ease-in-out;
 }
 
 @keyframes pulseGlow {
-  0%, 100% {box-shadow: 0 0 40px rgba(255,192,203,0.2);}
+  0%,100% {box-shadow: 0 0 40px rgba(255,192,203,0.2);}
   50% {box-shadow: 0 0 70px rgba(255,192,203,0.4);}
 }
 
 .center-box p {
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #f0eaff;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  text-align: left;
 }
 
-/* ---------------- BUTTON ---------------- */
+/* Button */
 button {
   padding: 14px 28px;
   border-radius: 30px;
@@ -117,10 +106,7 @@ button {
   cursor: pointer;
   transition: 0.3s;
 }
-
-button:hover {
-  transform: scale(1.05);
-}
+button:hover { transform: scale(1.05); }
 
 .thanks {
   margin-top: 15px;
@@ -130,9 +116,9 @@ button:hover {
   transition: opacity 1s ease;
 }
 
-/* ---------------- MUTE BUTTON ---------------- */
+/* Music button */
 .music-btn {
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 20px;
   background: rgba(255,255,255,0.1);
@@ -144,13 +130,14 @@ button:hover {
   font-size: 12px;
 }
 
-/* ---------------- RESPONSIVE ---------------- */
+/* Mobile optimization */
 @media (max-width: 600px) {
   .center-box {
-    padding: 25px;
+    padding: 20px;
+    border-radius: 20px;
   }
   .center-box p {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 </style>
@@ -164,36 +151,35 @@ button:hover {
 <button class="music-btn" onclick="toggleMusic()">Mute</button>
 
 <div class="center-box">
-  <p>
-"I want to share something with you openly and respectfully.<br><br>
+<p>
+I want to share something with you openly and respectfully...
 
-We have known each other since childhood, and now working in the same organization has given me the chance to see you again as the person you are today. I appreciate the trust you have shown when you shared some of your problems with me. That means a lot, and I respect you for it.<br><br>
+We have known each other since childhood, and now working in the same organization has given me the chance to see you again as the person you are today. I appreciate the trust you have shown when you shared some of your problems with me. That means a lot, and I respect you for it.
 
-I also want to be honest about myself.<br><br>
+I also want to be honest about myself.
 
-I am not the most handsome guy. I am not rich. I do not know much about a fancy lifestyle or stylish things. I am a simple and practical person. I think logically, not in dramatic or movie ways. But I am sincere, responsible, and steady. When I stand with someone, I do not disappear when things get difficult. I try to understand, support, and solve problems.<br><br>
+I am not the most handsome guy. I am not rich. I do not know much about a fancy lifestyle or stylish things. I am a simple and practical person. I think logically, not in dramatic or movie ways. But I am sincere, responsible, and steady. When I stand with someone, I do not disappear when things get difficult. I try to understand, support, and solve problems.
 
-I do not want to assume what you feel, and I do not want to pressure you. I just want to say that I see value in who you are as a person, and I respect you.<br><br>
+I do not want to assume what you feel, and I do not want to pressure you. I just want to say that I see value in who you are as a person, and I respect you.
 
-So I want to ask you something calmly.<br><br>
+So I want to ask you something calmly.
 
-Would you be open to exploring life together step by step, and seeing if we can build a meaningful partnership? No big promises right now, just honesty, mutual respect, support, and growing together if things feel right for both of us.<br><br>
+Would you be open to exploring life together step by step, and seeing if we can build a meaningful partnership?
 
-If your answer is no, I will fully respect that and nothing will change in the way I respect you. If you feel there is a possibility, we can move forward with patience and understanding.<br><br>
+If your answer is no, I will fully respect that.
 
-Take your time. Your comfort and decision matter."
-  </p>
+Take your time. Your comfort and decision matter.
+</p>
 
-  <button onclick="respond()">Take Your Time</button>
-  <div class="thanks" id="thanksText">Thank you for listening from the heart.</div>
+<button onclick="respond()">Take Your Time</button>
+<div class="thanks" id="thanksText">Thank you for listening from the heart.</div>
 </div>
 
-<audio id="bgMusic" autoplay loop>
+<audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b4b1e.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* HEART CREATION */
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
@@ -204,20 +190,23 @@ function createHeart() {
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 12000);
 }
-setInterval(createHeart, 600);
+setInterval(createHeart, 700);
 
-/* BUTTON RESPONSE */
+const music = document.getElementById("bgMusic");
+let musicStarted = false;
+document.body.addEventListener("click", () => {
+  if (!musicStarted) { music.play(); musicStarted = true; }
+});
+
 function respond() {
   document.getElementById("thanksText").style.opacity = 1;
 }
 
-/* MUSIC CONTROL */
 function toggleMusic() {
-  const music = document.getElementById("bgMusic");
   music.muted = !music.muted;
+  document.querySelector(".music-btn").innerText = music.muted ? "Unmute" : "Mute";
 }
 </script>
 
 </body>
 </html>
-
